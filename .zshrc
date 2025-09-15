@@ -12,13 +12,14 @@ fi
 source ~/.config/zsh/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # download & enable zsh-autosuggestions
-if [[ ! -r $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
+brewprefix=$(/opt/homebrew/bin/brew --prefix)
+if [[ ! -r $brewprefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
    [[ ! -r ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions.git ~/.config/zsh/zsh-autosuggestions
 fi
 
-if [[ -r $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [[ -r $brewprefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source $brewprefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 else
   source ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
