@@ -12,13 +12,10 @@ fi
 source ~/.config/zsh/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 # download & enable zsh-autosuggestions
-
 if [[ ! -r $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
    [[ ! -r ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions.git ~/.config/zsh/zsh-autosuggestions
 fi
-
-// End of Selection
 
 if [[ -r $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
   source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
