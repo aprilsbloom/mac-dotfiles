@@ -1,38 +1,93 @@
-# download & start znap (ZSH plugin manager)
-if [[ ! -r ~/.config/zsh/znap/znap.zsh ]]; then
-  git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git $HOME/.config/zsh/znap
+if [[ $ZSH_ENABLE_PROFILING == 1 ]]; then
+  zmodload zsh/zprof
 fi
-
-source $HOME/.config/zsh/znap/znap.zsh
 
 # download & enable shell completions
-if [[ ! -r ~/.config/zsh/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]]; then
-  git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git $HOME/.config/zsh/marlonrichert/zsh-autocomplete
-fi
-source $HOME/.config/zsh/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+load_shell_completions() {
+  if [[ ! -r ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete ]]; then
+    git clone https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+  fi
+}
 
 # download & enable zsh-autosuggestions
-brewprefix=$(/opt/homebrew/bin/brew --prefix)
-if [[ ! -r $brewprefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
-   [[ ! -r ~/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  git clone --depth 1 -- https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.config/zsh/zsh-autosuggestions
-fi
+load_shell_suggestions() {
+  if [[ ! -r ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]]; then
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  fi
+}
 
-if [[ -r $brewprefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
-  source $brewprefix/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-else
-  source $HOME/.config/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
+# Oh My ZSH
+load_oh_my_zsh() {
+  export ZSH="$HOME/.oh-my-zsh"
+  ZSH_THEME="robbyrussell"
+  plugins=(
+    # completion
+    zsh-autocomplete
+    zsh-autosuggestions
+    aliases
+    common-aliases
+    alias-finder
+
+    # programs
+    git
+    git-auto-fetch
+    gitignore
+    gh
+    vscode
+    brew
+    catimg
+
+    # languages
+    rust
+    python
+    pip
+    autopep8
+    mongocli
+    golang
+    charm
+
+    # system
+    gpg-agent
+    safe-paste
+    battery
+    emoji
+    firewalld
+    macos
+
+    # misc
+    history
+  )
+
+  source $ZSH/oh-my-zsh.sh
+}
 
 # bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+load_bun() {
+  export BUN_INSTALL="$HOME/.bun"
+  export PATH="$BUN_INSTALL/bin:$PATH"
+  [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+}
 
 # node
-export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
-export LDFLAGS="-L/opt/homebrew/opt/node@22/lib"
-export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
+load_node() {
+  export PATH="/opt/homebrew/opt/node@22/bin:$PATH"
+  export LDFLAGS="-L/opt/homebrew/opt/node@22/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
+}
 
 # misc env
-. "$HOME/.local/bin/env"
+load_env() {
+  . "$HOME/.local/bin/env"
+}
+
+# start
+load_shell_completions
+load_shell_suggestions
+load_oh_my_zsh
+load_bun
+load_node
+load_env
+
+if [[ $ZSH_ENABLE_PROFILING == 1 ]]; then
+  zprof
+fi
