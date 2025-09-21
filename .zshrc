@@ -34,7 +34,6 @@ load_oh_my_zsh() {
     git
     git-auto-fetch
     gitignore
-    vscode
     brew
 
     # languages
@@ -59,7 +58,6 @@ load_oh_my_zsh() {
   zstyle ':omz:plugins:git' lazy yes
   zstyle ':omz:plugins:git-auto-fetch' lazy yes
   zstyle ':omz:plugins:gitignore' lazy yes
-  zstyle ':omz:plugins:vscode' lazy yes
   zstyle ':omz:plugins:brew' lazy yes
 
   zstyle ':omz:plugins:bun' lazy yes
