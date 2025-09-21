@@ -24,39 +24,49 @@ load_oh_my_zsh() {
     # completion
     zsh-autocomplete
     zsh-autosuggestions
-    aliases
-    common-aliases
-    alias-finder
+
+    # shell
+    command-not-found
+    safe-paste
+    extract
 
     # programs
     git
     git-auto-fetch
     gitignore
-    gh
     vscode
     brew
-    catimg
 
     # languages
+    bun
     rust
     python
     pip
-    autopep8
-    mongocli
     golang
-    charm
 
     # system
     gpg-agent
-    safe-paste
     battery
     emoji
-    firewalld
     macos
 
     # misc
     history
   )
+
+  zstyle ':omz:plugins:extract' lazy yes
+
+  zstyle ':omz:plugins:git' lazy yes
+  zstyle ':omz:plugins:git-auto-fetch' lazy yes
+  zstyle ':omz:plugins:gitignore' lazy yes
+  zstyle ':omz:plugins:vscode' lazy yes
+  zstyle ':omz:plugins:brew' lazy yes
+
+  zstyle ':omz:plugins:bun' lazy yes
+  zstyle ':omz:plugins:rust' lazy yes
+  zstyle ':omz:plugins:python' lazy yes
+  zstyle ':omz:plugins:pip' lazy yes
+  zstyle ':omz:plugins:golang' lazy yes
 
   source $ZSH/oh-my-zsh.sh
 }
