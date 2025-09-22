@@ -1,7 +1,7 @@
 [window]
-opacity=0.95
-blur=true
+opacity = 0.95
+blur = true
 
 [cursor]
-style={ shape="Underline" }
+style = { shape="Underline" }
 
