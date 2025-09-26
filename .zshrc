@@ -19,7 +19,7 @@ load_shell_suggestions() {
 # Oh My ZSH
 load_oh_my_zsh() {
   export ZSH="$HOME/.oh-my-zsh"
-  ZSH_THEME="robbyrussell"
+  ZSH_THEME="mrrp"
   plugins=(
     # completion
     zsh-autocomplete
