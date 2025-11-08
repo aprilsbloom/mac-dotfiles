@@ -1,7 +1,9 @@
 [window]
 opacity = 0.95
 blur = true
+padding = { x = 10, y = 30 }
+decorations = "Transparent"
+decorations_theme_variant = "Dark"
 
 [cursor]
-style = { shape="Underline" }
-
+style = { shape = "Underline" }

@@ -19,7 +19,7 @@ load_shell_suggestions() {
 # Oh My ZSH
 load_oh_my_zsh() {
   export ZSH="$HOME/.oh-my-zsh"
-  ZSH_THEME="mrrp"
+  #ZSH_THEME="mrrp"
   plugins=(
     # completion
     zsh-autocomplete
@@ -83,6 +83,11 @@ load_node() {
   export CPPFLAGS="-I/opt/homebrew/opt/node@22/include"
 }
 
+# rust
+load_rust() {
+  . "$HOME/.cargo/env"
+}
+
 # misc env
 load_env() {
   . "$HOME/.local/bin/env"
@@ -94,6 +99,7 @@ load_shell_suggestions
 load_oh_my_zsh
 load_bun
 load_node
+load_rust
 load_env
 
 if [[ $ZSH_ENABLE_PROFILING == 1 ]]; then
