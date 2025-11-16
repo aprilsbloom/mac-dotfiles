@@ -88,6 +88,11 @@ load_rust() {
   . "$HOME/.cargo/env"
 }
 
+# spicetify
+load_spicetify() {
+  export PATH=$PATH:/Users/e/.spicetify≈
+}
+
 # misc env
 load_env() {
   . "$HOME/.local/bin/env"
@@ -100,6 +105,7 @@ load_oh_my_zsh
 load_bun
 load_node
 load_rust
+load_spicetify
 load_env
 
 if [[ $ZSH_ENABLE_PROFILING == 1 ]]; then
